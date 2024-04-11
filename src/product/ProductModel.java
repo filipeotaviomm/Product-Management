@@ -6,7 +6,7 @@ public class ProductModel {
   private int priceInCents;
   private int stock;
 
-  ProductModel(String name, int priceInCents, int stock) {
+  ProductModel(String name, int priceInCents, int stock) { //construtor
     this.barCode = UUID.randomUUID().toString();
     this.name = name;
     this.priceInCents = priceInCents;

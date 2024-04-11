@@ -1,14 +1,16 @@
-import java.util.Arraylist;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+
 
 public class ProductController {
-  private List<ProductModel> products = new ArrayList<>()
+  public List<ProductModel> products = new ArrayList<>();
 
-  public String create(ProductModel payload) throw Exception {
-    if(payload.getPriceInCents <= 0) {
+  public String create(ProductModel payload) throws Exception {
+    if(payload.getPriceInCents() <= 0) {
       throw new NegativePriceException(
         "The product price must be a positive number."
-      )
+      );
     }
 
     products.add(payload);
@@ -20,14 +22,15 @@ public class ProductController {
     return this.products;
   }
 
-  public int retrievePrice(String barCode) throw Exception {
+  public int retrievePrice(String barCode) throws Exception {
 
-    Optional<ProductModel> = products.stream()
+    // usa-se a classe Optional quando a variável tem chance de ser null
+    Optional<ProductModel> foundProduct = products.stream()
                 .filter(product -> product.getBarCode().equals(barCode))
                 .findFirst();
 
     if (!foundProduct.isPresent()) {
-      throw new NotFoundException("Invalid bar code")
+      throw new NotFoundException("Invalid bar code");
     }
 
     return foundProduct.get().getPriceInCents();
