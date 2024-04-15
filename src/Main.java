@@ -11,7 +11,7 @@ public class Main {
             System.out.println(controller.products.get(1).getName());
             System.out.println(controller.read());
             System.out.println(controller.retrievePrice(
-                "e7a0cfc3-c56f-4fdc-ab86-efe409adc2c8") //o barCode muda toda hora, então não tem como buscar ele.
+                arroz.getBarCode())
             );
         } catch (NegativePriceException error) {
             System.out.println(error.getMessage());
